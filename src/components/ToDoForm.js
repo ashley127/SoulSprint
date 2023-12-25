@@ -1,8 +1,14 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect, useRef} from 'react'
 
 function ToDoForm(props) {
 const[input, setInput] = useState('');
+
+const inpRef = useRef(null)
+
+useEffect(() => {
+  inpRef.current.focus()
+})
 
 const handleInput = e =>{
     setInput(e.target.value);
@@ -28,6 +34,7 @@ const handleSubmit = e => {
         name = "text" 
         className = 'todo-input'
         onChange={handleInput}
+        ref = {inpRef}
         />
         <button className='to-do-button'> Add todo</button>
     </form>
