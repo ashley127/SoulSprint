@@ -1,44 +1,61 @@
-import React from 'react'
-import { useState, useEffect, useRef} from 'react'
+import React, { useState, useEffect, useRef } from 'react';
 
-function ToDoForm(props) {
-const[input, setInput] = useState('');
+function TodoForm(props) {
+  const [input, setInput] = useState(props.edit ? props.edit.value : '');
 
-const inpRef = useRef(null)
+  const inputRef = useRef(null);
 
-useEffect(() => {
-  inpRef.current.focus()
-})
+  useEffect(() => {
+    inputRef.current.focus();
+  });
 
-const handleInput = e =>{
+  const handleChange = e => {
     setInput(e.target.value);
-}
+  };
 
-const handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
 
     props.onSubmit({
-        id:Math.floor(Math.random() * 10000),
-        text: input
-    })
-
+      id: Math.floor(Math.random() * 100000),
+      text: input
+    });
     setInput('');
-}
+  };
 
   return (
-    <form className='to-do form' onSubmit={handleSubmit}>
-        <input 
-        type="text" 
-        placeholder='Add a todo' 
-        value={input} 
-        name = "text" 
-        className = 'todo-input'
-        onChange={handleInput}
-        ref = {inpRef}
-        />
-        <button className='to-do-button'> Add todo</button>
+    <form onSubmit={handleSubmit} className='form'>
+      {props.edit ? (
+        <>
+          <input
+            placeholder='Update todo'
+            value={input}
+            onChange={handleChange}
+            name='text'
+            ref={inputRef}
+            className='todo-input edit'
+          />
+          <button onClick={handleSubmit} className='todo-button edit'>
+            Update
+          </button>
+        </>
+      ) : (
+        <>
+          <input
+            placeholder='Add a task'
+            value={input}
+            onChange={handleChange}
+            name='text'
+            className='todo-input'
+            ref={inputRef}
+          />
+          <button onClick={handleSubmit} className='todo-button'>
+            Add todo
+          </button>
+        </>
+      )}
     </form>
-  )
+  );
 }
 
-export default ToDoForm
+export default TodoForm;

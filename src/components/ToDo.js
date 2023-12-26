@@ -1,47 +1,46 @@
-import React from 'react'
-import { useState } from 'react'
-import ToDoForm from './ToDoForm'
+import React, { useState } from 'react';
+import TodoForm from './TodoForm';
 import { IoMdCloseCircleOutline } from "react-icons/io";
-import { CiEdit } from "react-icons/ci";
+import { MdOutlineEdit } from "react-icons/md";
 
+const Todo = ({ todos, complete, remove, update }) => {
+  const [edit, setEdit] = useState({
+    id: null,
+    value: ''
+  });
 
-function ToDo({todos, completeTodo, removeTodo, updatedTodos}) {
-    const [edit, setEdit] = useState({
-        id:null,
-        value: ''
-    })
+  const submitUpdate = value => {
+    update(edit.id, value);
+    setEdit({
+      id: null,
+      value: ''
+    });
+  };
 
-    const submitUpdate = value => {
-        updatedTodos(edit.id, value)
-        setEdit({
-            id:null,
-            value:''
-        })
-    }
+  if (edit.id) {
+    return <TodoForm edit={edit} onSubmit={submitUpdate} />;
+  }
 
-    if (edit.id) {
-        return <ToDoForm edit={edit} onSubmit={submitUpdate} />;
-    }
-
-  return todos.map((todo, index) =>(
-    <div className={todo.isComplete ? 'todo-row complete' : 'todo-row'} 
-    key = {index}
+  return todos.map((todo, index) => (
+    <div
+      className={todo.isComplete ? 'todo-row complete' : 'todo-row'}
+      key={index}
     >
-        <div key = {todo.id} onClick={() => completeTodo(todo.id)}>
-            {todo.text}
-        </div>
-        <div className='icons'>
-            <IoMdCloseCircleOutline 
-                onClick={() => removeTodo(todo.id)}
-                className='delete-icon'
-            />
-            <CiEdit 
-                onClick={() => setEdit({id: todo.id, value: todo.text})}
-                className='edit-icon'
-            />
-        </div>
+      <div key={todo.id} onClick={() => complete(todo.id)}>
+        {todo.text}
+      </div>
+      <div className='icons'>
+        <IoMdCloseCircleOutline 
+          onClick={() => remove(todo.id)}
+          className='delete-icon'
+        />
+        <MdOutlineEdit 
+          onClick={() => setEdit({ id: todo.id, value: todo.text })}
+          className='edit-icon'
+        />
+      </div>
     </div>
-  ))
-}
+  ));
+};
 
-export default ToDo
+export default Todo;
