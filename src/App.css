@@ -8,8 +8,8 @@
 
 body {
     background: linear-gradient(90deg,
-            rgba(48, 16, 255, 1) 0%,
-            rgba(100, 115, 255, 1) 100%);
+            rgb(255, 124, 16) 0%,
+            rgb(237, 100, 255) 100%);
 }
 
 .todo-app {
@@ -18,7 +18,7 @@ body {
     justify-content: start;
     width: 520px;
     min-height: 600px;
-    background: #161a2b;
+    background: #1f1f1f;
     text-align: center;
     margin: 128px auto;
     border-radius: 10px;
@@ -28,7 +28,8 @@ body {
 h1 {
     margin: 32px 0;
     color: #fff;
-    font-size: 24px;
+    font-size: 50px;
+    font-family: 'Light';
 }
 
 .complete {
@@ -131,4 +132,10 @@ h1 {
 
 .edit-icon {
     color: #fff;
+}
+
+@font-face {
+    font-family: "Light";
+    src: local("Pioggia"),
+        url("./Pioggia.otf") format("truetype");
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import TodoList from './components/TodoList';
+import './Pioggia.otf';
 
 function App() {
   return (
