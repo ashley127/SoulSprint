@@ -16,7 +16,7 @@ import{
 
 function App() {
   return (
-    <div>
+    <div className='flex'>
       <Sidebar> 
         <SidebarItem 
           icon = {<LayoutDashboard size = {20} />}
@@ -32,9 +32,9 @@ function App() {
         <SidebarItem icon = {<Settings size={20} />} text = "Settings" />
         <SidebarItem icon = {<LifeBuoy size={20} />} text = "Help" />
       </Sidebar>
-      <div className='todo-app'>
-        <TodoList />
-      </div>
+        <div className='todo-app'>
+          <TodoList />
+        </div>
     </div>
 
   );
