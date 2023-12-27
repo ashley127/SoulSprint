@@ -43,9 +43,6 @@ function TodoList() {
   return (
     <>
       <h1 className=''>What's the Plan for Today?</h1>
-      <h1 className="text-6xl font-bold underline">
-      Hello world!
-    </h1>
       <TodoForm onSubmit={addTodo} />
       <Todo
         todos={todos}
