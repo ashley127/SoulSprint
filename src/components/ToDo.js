@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import TodoForm from './TodoForm';
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { MdOutlineEdit } from "react-icons/md";
+import { IoMdOpen } from "react-icons/io";
+import { Link } from "react-router-dom";
 
-const Todo = ({ todos, complete, remove, update }) => {
+const Todo = ({ todos, complete, remove, update}) => {
   const [edit, setEdit] = useState({
     id: null,
     value: ''
@@ -38,6 +40,9 @@ const Todo = ({ todos, complete, remove, update }) => {
           onClick={() => setEdit({ id: todo.id, value: todo.text })}
           className='edit-icon'
         />
+        <Link to = "/task">
+          <IoMdOpen/> 
+        </Link>
       </div>
     </div>
   ));
