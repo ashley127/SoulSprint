@@ -6,13 +6,16 @@ import Sidebar, { SidebarItem } from './components/Sidebar';
 import{
   LifeBuoy,
   Receipt,
-  Boxes,
-  Package,
-  UserCircle,
-  BarChart3,
   LayoutDashboard,
   Settings,
+  Book,
+  Haze,
+  Star,
+  TrendingUp,
+  Gauge,
 } from "lucide-react"
+
+import { Link } from "react-router-dom";
 
 function App() {
   return (
@@ -21,15 +24,30 @@ function App() {
         <SidebarItem 
           icon = {<LayoutDashboard size = {20} />}
           text = "Dashboard"
-          alert
+          active
         />
-        <SidebarItem icon = {<BarChart3 size = {20}/>} text = "Statistics" active />
-        <SidebarItem icon = {<UserCircle size = {20}/>} text = "Users" />
-        <SidebarItem icon = {<Boxes size = {20}/>} text = "Inventory"  />
-        <SidebarItem icon = {<Package size = {20}/>} text = "Orders" alert />
-        <SidebarItem icon = {<Receipt size = {20}/>} text = "Billings" />
+        <Link to ="notebooks">
+          <SidebarItem icon = {<Book size = {20}/>} text = "Notebooks"/>
+        </Link>
+
+        <Link to ="meditation">
+          <SidebarItem icon = {<Haze size = {20}/>} text = "Meditation" />
+        </Link>
+
+        <Link to ="habit">
+          <SidebarItem icon = {<TrendingUp size = {20}/>} text = "Habit Tracker" alert />
+        </Link>
+
+        <Link to ="affirmations">
+          <SidebarItem icon = {<Star size = {20}/>} text = "Affirmations" />
+        </Link>
+
+        <Link to ="podomoro">
+          <SidebarItem icon = {<Gauge size = {20}/>} text = "Podomoro" />
+        </Link>
+        
         <hr className='my-3' />
-        <SidebarItem icon = {<Settings size={20} />} text = "Settings" />
+        <SidebarItem icon = {<Settings size={20} />} text = "Settings" alert/>
         <SidebarItem icon = {<LifeBuoy size={20} />} text = "Help" />
       </Sidebar>
         <div className='todo-app'>

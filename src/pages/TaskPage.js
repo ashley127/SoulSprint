@@ -2,7 +2,7 @@ import React from 'react'
 
 function TaskPage() {
   return (
-    <div><h1>Hello world</h1></div>
+    <div><h1>TaskPage</h1></div>
   )
 }
 
