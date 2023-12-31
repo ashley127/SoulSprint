@@ -1,9 +1,15 @@
 import React from 'react'
 
-function TaskPage() {
-  return (
-    <div><h1>TaskPage</h1></div>
-  )
+function TaskPage(props) {
+  return (props.trigger)?(
+    <div className='popup'>
+      <div className='popup-inner'>
+          <button className = 'close-btn'>close</button>
+          {props.children}
+      </div>
+    </div>
+  ): "";
+
 }
 
 export default TaskPage

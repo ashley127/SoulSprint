@@ -5,7 +5,6 @@ import './Pioggia.otf';
 import Sidebar, { SidebarItem } from './components/Sidebar';
 import{
   LifeBuoy,
-  Receipt,
   LayoutDashboard,
   Settings,
   Book,
@@ -16,8 +15,12 @@ import{
 } from "lucide-react"
 
 import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { IoMdOpen } from "react-icons/io";
+
 
 function App() {
+  const [buttonPopup, setButtonPopup] = useState(false);
   return (
     <div className='flex'>
       <Sidebar> 
