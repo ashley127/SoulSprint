@@ -21,10 +21,7 @@ const router = createBrowserRouter([
     element: <App/>,
   },
 
-  {
-    path: "task",
-    element: <TaskPage/>,
-  },
+  
 
   {
     path: "notebooks",

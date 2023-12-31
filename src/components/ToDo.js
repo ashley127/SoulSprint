@@ -3,7 +3,6 @@ import TodoForm from './TodoForm';
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { MdOutlineEdit } from "react-icons/md";
 import { IoMdOpen } from "react-icons/io";
-import { Link } from "react-router-dom";
 
 import TaskPage from '../pages/TaskPage';
 
@@ -44,10 +43,8 @@ function Todo({ todos, complete, remove, update})
               onClick={() => setEdit({ id: todo.id, value: todo.text })}
               className='edit-icon'
             />
-            <Link to = "/task">
-              <IoMdOpen onClick={() => setButtonPopup(true)}/> 
-            </Link>
-            <TaskPage trigger = {buttonPopup}>
+            <IoMdOpen onClick={() => setButtonPopup(true)}/> 
+            <TaskPage trigger = {buttonPopup} setTrigger = {setButtonPopup}>
                   <h2>My popup</h2>
                   <p>Some content here about the task (subtasks and ai features)</p>
             </TaskPage>

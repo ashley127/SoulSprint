@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
+import { MdCloseFullscreen } from "react-icons/md";
 
 function TaskPage(props) {
   return (props.trigger)?(
     <div className='popup'>
       <div className='popup-inner'>
-          <button className = 'close-btn'>close</button>
+          <MdCloseFullscreen className = 'close-btn' onClick={() => props.setTrigger(false)}/>
           {props.children}
       </div>
     </div>
