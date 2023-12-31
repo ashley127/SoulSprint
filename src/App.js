@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import TodoList from './components/TodoList';
 import './Pioggia.otf';
+import './Crimson.ttf';
 import Sidebar, { SidebarItem } from './components/Sidebar';
 import{
   LifeBuoy,
@@ -15,12 +16,8 @@ import{
 } from "lucide-react"
 
 import { Link } from "react-router-dom";
-import { useState } from 'react';
-import { IoMdOpen } from "react-icons/io";
-
 
 function App() {
-  const [buttonPopup, setButtonPopup] = useState(false);
   return (
     <div className='flex'>
       <Sidebar> 

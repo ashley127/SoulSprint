@@ -45,8 +45,7 @@ function Todo({ todos, complete, remove, update})
             />
             <IoMdOpen onClick={() => setButtonPopup(true)}/> 
             <TaskPage trigger = {buttonPopup} setTrigger = {setButtonPopup}>
-                  <h2>My popup</h2>
-                  <p>Some content here about the task (subtasks and ai features)</p>
+                  <h2>{todo.text}</h2>
             </TaskPage>
           </div>
           
