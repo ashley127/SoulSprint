@@ -177,3 +177,7 @@ h2 {
     top: 16px;
     right: 16px;
 }
+
+.subtask-input {
+    color: black;
+}

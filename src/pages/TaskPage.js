@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { MdCloseFullscreen } from "react-icons/md";
 
 import {Plus} from "lucide-react";
+import Todo from '../components/Todo';
+import Subtask from '../components/Subtask';
 
 function TaskPage(props) {
+
   const [subtask,setSubtask]=useState([]);
+
    const handleAddSubtask=()=>{
        const newSubtask=[...subtask,[]]
        setSubtask(newSubtask)
@@ -19,6 +23,16 @@ function TaskPage(props) {
        deletSubtask.splice(i,1)
        setSubtask(deletSubtask)  
    }
+
+   const complete = id => {
+    let updatedTasks = subtask.map(task => {
+      if (task.id === id) {
+        task.isComplete = !task.isComplete;
+      }
+      return task;
+    });
+    setSubtask(updatedTasks);
+  };
 
   return (props.trigger)?(
     <div className='popup'>
@@ -41,18 +55,37 @@ function TaskPage(props) {
                   <Plus size = {20} className='text-orange-700'/> 
                   <span>Add sub-task</span>
                 </div>
-              
               )}
               
             </li>
             {subtask.map((data,i)=>{
               return(
                 <div>
-                      <input value={data} onChange={e=>handleChange(e,i)} />
+                      <input 
+                      value={data} 
+                      onChange={e=>handleChange(e,i)} 
+                      className='subtask-input' 
+                      onSubmit={handleAddSubtask}
+                      />
                       <button onClick={()=>handleDelete(i)}>x</button>
                 </div>
               )
             })}
+            {subtask.length !== 0 ?(
+                <li
+                className={`
+                  relative flex items-center py-2  my-1
+                  font-medium rounded-md cursor-pointer
+                  transition-colors group text-base text-gray-400
+              `}
+              onClick={() =>handleAddSubtask()}
+              >
+                  <div style={{display: "flex", justifyContent: "left"}}>
+                    <Plus size = {20} className='text-orange-700'/> 
+                    <span>Add sub-task</span>
+                  </div>
+              </li>
+              ):""}
             
           </form>
       </div>
