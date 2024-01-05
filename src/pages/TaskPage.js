@@ -7,13 +7,15 @@ import SubtaskList from '../components/SubtaskList';
 function TaskPage(props) {
 
   return (props.trigger)?(
-    <div className='popup'>
+    <div className='verflow-y-scroll'>
+      <div className='popup'>
       <div className='popup-inner'>
           <MdCloseFullscreen className = 'close-btn' onClick={() => props.setTrigger(false)}/>
           {props.children}
           <hr className='my-3' />
           <SubtaskList/>
       </div>
+    </div>
     </div>
   ): "";
 

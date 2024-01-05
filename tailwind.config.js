@@ -4,10 +4,15 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    fontFamily:{
-      'display': ['Pioggia']
+    extend:{
+      colors:{
+        'my-grey': '#00000033'
+      }
     }
+    
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar'),
+  ],
 }
 
