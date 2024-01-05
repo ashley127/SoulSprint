@@ -179,5 +179,38 @@ h2 {
 }
 
 .subtask-input {
+    padding: 5px;
+    border-radius: 2px 0 0 2px;
+    outline: none;
+    width: 320px;
+    background: transparent;
     color: black;
+}
+
+.subtask-input.edit {
+    border: 2px solid black;
+}
+
+.subtask-button.edit {
+    padding: 16px 22px;
+}
+
+.subtask-button {
+    padding: 10px;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    outline: none;
+    color: grey;
+    font-size: medium;
+    text-transform: capitalize;
+}
+
+.subtask-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 4px auto;
+    color: #000000;
+    padding: 16px;
 }
