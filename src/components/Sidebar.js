@@ -1,8 +1,8 @@
 import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react"
 import { useContext, createContext, useState } from "react"
 import logo from "../SoulSprint.png"
-import ProfilePage from "../pages/ProfilePage"
 import { Link } from "react-router-dom"
+import { SignedIn, SignedOut } from "@clerk/clerk-react"
 const SidebarContext = createContext()
 
 export default function Sidebar({ children }) {
@@ -31,27 +31,16 @@ export default function Sidebar({ children }) {
           <ul className="flex-1 px-3">{children}</ul>
         </SidebarContext.Provider>
         
-        <Link to ="profile">
-        <div className="border-t flex p-3">
-          <img
-            src="https://ui-avatars.com/api/?background=c7d2fe&color=3730a3&bold=true"
-            alt=""
-            className="w-10 h-10 rounded-md"
-          />
-          <div
-            className={`
-              flex justify-between items-center
-              overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"}
-          `}
-          >
-            <div className="leading-4">
-              <h4 className="font-semibold">John Doe</h4>
-              <span className="text-xs text-gray-600">johndoe@gmail.com</span>
-            </div>
-            <MoreVertical size={20} />
+        <SignedOut>
+          <Link to ="sign-in" className="border-t flex p-3">
+              Sign in
+          </Link>
+        </SignedOut>
+        <SignedIn>
+          <div className="border-t flex p-3">
+            
           </div>
-        </div>
-        </Link>
+        </SignedIn>
       </nav>
       </aside>
   )

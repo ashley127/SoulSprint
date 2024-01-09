@@ -9,19 +9,9 @@ if (!PUBLISHABLE_KEY) {
 export default function RootLayout() {
   return (
     <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-      <header className="header">
-        <div>
-          <div>
-            <p>sample header</p>
-          </div>
           <SignedIn>
             <UserButton afterSignOutUrl='/sign-in' />
           </SignedIn>
-          <SignedOut>
-            <Link to="/sign-in">Sign In</Link>
-          </SignedOut>
-        </div>
-      </header>
       <main>
         <Outlet />
       </main>

@@ -50,7 +50,6 @@ function SubtaskList() {
         todos={todos}
         complete={complete}
         remove={remove}
-        update={update}
       />
     </>
   );

@@ -7,7 +7,6 @@ import MeditationPage from './pages/MeditationPage';
 import HabitTrackerPage from './pages/HabitTrackerPage';
 import AffirmationsPage from './pages/AffirmationsPage';
 import PodomoroPage from './pages/PodomoroPage';
-import ProfilePage from './pages/ProfilePage';
 import DashboardPage from './pages/DashboardPage';
 
 import {
@@ -17,6 +16,7 @@ import {
 
 import RootLayout from './layout/RootLayout';
 import MainLayout from './layout/MainLayout';
+import { SignIn } from '@clerk/clerk-react';
 
 
 const PUBLISHABLE_KEY = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
       { path: "/habit", element: <HabitTrackerPage /> },
       { path: "/affirmations", element: <AffirmationsPage /> },
       { path: "/podomoro", element: <PodomoroPage /> },
-      { path: "/profile", element: <ProfilePage /> },
+      { path: "/sign-in", element: <SignIn/> },
       {
         element: <MainLayout />,
         path: "dashboard",
