@@ -1,6 +1,8 @@
 import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react"
 import { useContext, createContext, useState } from "react"
 import logo from "../SoulSprint.png"
+import ProfilePage from "../pages/ProfilePage"
+import { Link } from "react-router-dom"
 const SidebarContext = createContext()
 
 export default function Sidebar({ children }) {
@@ -28,7 +30,8 @@ export default function Sidebar({ children }) {
         <SidebarContext.Provider value={{ expanded }}>
           <ul className="flex-1 px-3">{children}</ul>
         </SidebarContext.Provider>
-
+        
+        <Link to ="profile">
         <div className="border-t flex p-3">
           <img
             src="https://ui-avatars.com/api/?background=c7d2fe&color=3730a3&bold=true"
@@ -48,6 +51,7 @@ export default function Sidebar({ children }) {
             <MoreVertical size={20} />
           </div>
         </div>
+        </Link>
       </nav>
       </aside>
   )
