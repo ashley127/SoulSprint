@@ -2,12 +2,13 @@ import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react"
 import { useContext, createContext, useState } from "react"
 import logo from "../SoulSprint.png"
 import { Link } from "react-router-dom"
-import { UserButton, SignedIn, SignedOut } from "@clerk/clerk-react"
+import { UserButton, SignedIn, SignedOut, SignIn, useUser} from "@clerk/clerk-react"
 
 const SidebarContext = createContext();
 
 export default function Sidebar({ children }) {
   const [expanded, setExpanded] = useState(true)
+  const { user } = useUser();
   const [activeItem, setActiveItem] = useState("Dashboard");
   
   const changeActiveItem = (itemName) =>{
@@ -36,15 +37,20 @@ export default function Sidebar({ children }) {
         <SidebarContext.Provider value={{ expanded, changeActiveItem, activeItem}}>
           <ul className="flex-1 px-3">
             {children}
+          </ul>
+          <div className="user-section mt-auto">
             <SignedOut>
-              <SidebarItem text = "Sign in"/>
+            <div className="p-3">
+              <SignIn />
+            </div>
             </SignedOut>
             <SignedIn>
-              <div className="border-t flex p-3">
+              <div className="user-info border-t p-3 flex items-center justify-between">
                 <UserButton />
+                <span>{user ? `${user.firstName} ${user.lastName}` : 'User'}</span>
               </div>
             </SignedIn>
-          </ul>
+          </div>
         </SidebarContext.Provider>
       </nav>
       </aside>

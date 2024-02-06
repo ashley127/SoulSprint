@@ -4,6 +4,7 @@ import { ClerkProvider, SignedIn } from '@clerk/clerk-react'
 import Sidebar, { SidebarItem } from '../components/Sidebar';
 import{
   LifeBuoy,
+  CheckSquare, 
   LayoutDashboard,
   Settings,
   Book,
@@ -31,6 +32,13 @@ export default function RootLayout() {
                   icon = {<LayoutDashboard size = {20} />}
                   text = "Dashboard"
                   active={location.pathname === '/'}
+                />
+              </Link>
+              <Link to = "/todo">
+                <SidebarItem 
+                  icon = {<CheckSquare size = {20} />}
+                  text = "To-Do List"
+                  active={location.pathname === '/todo'}
                 />
               </Link>
               <Link to ="/notebooks">
@@ -84,9 +92,9 @@ export default function RootLayout() {
                 text = "Help" 
                 />
             </Sidebar>
-          <div className='todo-app'>
+          
             <Outlet />
-          </div>
+          
       </div>
       </main>
     </ClerkProvider>

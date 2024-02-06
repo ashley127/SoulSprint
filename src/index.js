@@ -7,7 +7,7 @@ import MeditationPage from './pages/MeditationPage';
 import HabitTrackerPage from './pages/HabitTrackerPage';
 import AffirmationsPage from './pages/AffirmationsPage';
 import PodomoroPage from './pages/PodomoroPage';
-import DashboardPage from './pages/DashboardPage';
+import ToDoPage from './pages/ToDoPage';
 
 import {
   createBrowserRouter,
@@ -16,7 +16,8 @@ import {
 
 import RootLayout from './layout/RootLayout';
 import MainLayout from './layout/MainLayout';
-import { SignIn } from '@clerk/clerk-react';
+import { Navigate } from 'react-router-dom';
+import { SignIn, SignedIn, SignedOut, RedirectToSignIn, useUser} from '@clerk/clerk-react';
 
 
 const PUBLISHABLE_KEY = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY
@@ -24,24 +25,43 @@ if (!PUBLISHABLE_KEY) {
   throw new Error("Missing Publishable Key")
 }
 
+const ProtectedRoute = ({ children }) => {
+  const { isSignedIn } = useUser();
+  return isSignedIn ? children : <Navigate to="/sign-in" replace />;
+};
+
 const router = createBrowserRouter([
   {
+    path: "/",
     element: <RootLayout />,
     children: [
-      { path: "/", element: <App /> },
+      {
+        index: true,
+        element:(
+          <ProtectedRoute>
+            <App/>
+          </ProtectedRoute>
+        ),
+      },
+      { path: "/todo", element: <ToDoPage />},
       { path: "/notebooks", element: <NotebooksPage /> },
       { path: "/meditation", element: <MeditationPage /> },
       { path: "/habit", element: <HabitTrackerPage /> },
       { path: "/affirmations", element: <AffirmationsPage /> },
       { path: "/podomoro", element: <PodomoroPage /> },
-      { path: "/sign-in", element: <SignIn/> },
+      { path: "/sign-in", element: (
+        <SignedOut>
+          <SignIn/>
+        </SignedOut>
+      )},
       {
-        element: <MainLayout />,
-        path: "dashboard",
-        children: [
-          { path: "/dashboard", element: <DashboardPage /> },
-        ]
-      }
+        path: "*", // Catch-all route for undefined paths
+        element: (
+          <SignedOut>
+            <RedirectToSignIn /> // Redirect to sign-in if the user is not logged in
+          </SignedOut>
+        ),
+      },
     ]
   }
 ])

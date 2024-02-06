@@ -220,3 +220,91 @@ h2 {
     color: #000000;
     padding: 16px;
 }
+
+/* Dashboard.css */
+.dashboard-container {
+    padding: 20px;
+    background-color: #f5f5f5;
+    width: calc(100vw - 40px);
+    /* Example background color, adjust as needed */
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.widget {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+}
+
+.widget:hover {
+    transform: translateY(-5px);
+}
+
+/* Specific styles for each widget */
+.spotify-widget {
+    grid-column: span 2;
+    /* Spans two columns */
+}
+
+.weather-widget {
+    grid-row: span 2;
+    /* Spans two rows */
+}
+
+.news-widget {
+    grid-column: span 2;
+    grid-row: span 2;
+    /* Spans two columns and two rows */
+}
+
+.notion-widget {
+    /* Styles for the Notion widget */
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.dashboard-header h1 {
+    font-size: 2em;
+    /* Adjust the size as needed */
+    color: #333;
+    /* Adjust the color as needed */
+    margin-bottom: 0.5em;
+}
+
+.dashboard-header p {
+    font-size: 1em;
+    color: #666;
+    /* Adjust the color as needed */
+}
+
+.user-section {
+    margin-top: auto;
+    /* Pushes the user section to the bottom */
+    width: 100%;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Center the user info horizontally */
+}
+
+.user-info span {
+    margin-left: 8px;
+    /* Space between the avatar and the user's name */
+}
