@@ -3,11 +3,17 @@ import { useContext, createContext, useState } from "react"
 import logo from "../SoulSprint.png"
 import { Link } from "react-router-dom"
 import { SignedIn, SignedOut } from "@clerk/clerk-react"
-const SidebarContext = createContext()
+
+const SidebarContext = createContext();
 
 export default function Sidebar({ children }) {
   const [expanded, setExpanded] = useState(true)
+  const [activeItem, setActiveItem] = useState("Dashboard");
   
+  const changeActiveItem = (itemName) =>{
+    setActiveItem(itemName);
+  };
+
   return (
     <aside className="h-screen sticky top-0">
       <nav className="h-full inline-flex flex-col bg-white border-r shadow-sm">
@@ -27,7 +33,7 @@ export default function Sidebar({ children }) {
           </button>
         </div>
 
-        <SidebarContext.Provider value={{ expanded }}>
+        <SidebarContext.Provider value={{ expanded, changeActiveItem, activeItem}}>
           <ul className="flex-1 px-3">{children}</ul>
         </SidebarContext.Provider>
         
@@ -46,17 +52,24 @@ export default function Sidebar({ children }) {
   )
 }
 
-export function SidebarItem({ icon, text, active, alert }) {
-  const { expanded } = useContext(SidebarContext)
+export function SidebarItem({ icon, text, alert }) {
+  const { expanded, changeActiveItem, activeItem} = useContext(SidebarContext)
   
+  const handleClick = () => {
+    changeActiveItem(text);
+  }
+
+  const isActive = activeItem === text;
+
   return (
     <li
+      onClick={handleClick}
       className={`
         relative flex items-center py-2 px-3 my-1
         font-medium rounded-md cursor-pointer
         transition-colors group
         ${
-          active
+          isActive
             ? "bg-gradient-to-tr from-indigo-200 to-indigo-100 text-indigo-800"
             : "hover:bg-indigo-50 text-gray-600"
         }
