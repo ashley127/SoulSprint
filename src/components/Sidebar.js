@@ -2,7 +2,7 @@ import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react"
 import { useContext, createContext, useState } from "react"
 import logo from "../SoulSprint.png"
 import { Link } from "react-router-dom"
-import { SignedIn, SignedOut } from "@clerk/clerk-react"
+import { UserButton, SignedIn, SignedOut } from "@clerk/clerk-react"
 
 const SidebarContext = createContext();
 
@@ -34,19 +34,18 @@ export default function Sidebar({ children }) {
         </div>
 
         <SidebarContext.Provider value={{ expanded, changeActiveItem, activeItem}}>
-          <ul className="flex-1 px-3">{children}</ul>
+          <ul className="flex-1 px-3">
+            {children}
+            <SignedOut>
+              <SidebarItem text = "Sign in"/>
+            </SignedOut>
+            <SignedIn>
+              <div className="border-t flex p-3">
+                <UserButton />
+              </div>
+            </SignedIn>
+          </ul>
         </SidebarContext.Provider>
-        
-        <SignedOut>
-          <Link to ="sign-in" className="border-t flex p-3">
-              Sign in
-          </Link>
-        </SignedOut>
-        <SignedIn>
-          <div className="border-t flex p-3">
-            
-          </div>
-        </SignedIn>
       </nav>
       </aside>
   )

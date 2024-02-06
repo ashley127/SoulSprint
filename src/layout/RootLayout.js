@@ -1,5 +1,5 @@
 import { Link, Outlet, useLocation } from 'react-router-dom'
-import { ClerkProvider, SignedIn, UserButton } from '@clerk/clerk-react'
+import { ClerkProvider, SignedIn } from '@clerk/clerk-react'
 
 import Sidebar, { SidebarItem } from '../components/Sidebar';
 import{
@@ -23,9 +23,6 @@ export default function RootLayout() {
   const location = useLocation();
   return (
     <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-      <SignedIn>
-        <UserButton afterSignOutUrl='/sign-in' />
-      </SignedIn>
       <main>
           <div className='flex'>
             <Sidebar> 
