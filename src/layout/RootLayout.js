@@ -61,7 +61,6 @@ export default function RootLayout() {
             <Outlet />
           </div>
       </div>
-        <Outlet />
       </main>
     </ClerkProvider>
   )
